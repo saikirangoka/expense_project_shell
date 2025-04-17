@@ -63,6 +63,9 @@ VALIDATE $? "Downloading Backend"
 cd /app
 VALIDATE $? "Changing directory"
 
+rm -rf /app/*
+VALIDATE $? "removing everything"
+
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "unzip the application folder"
 
@@ -85,7 +88,7 @@ VALIDATE $? "Daemon reload"
 systemctl enable backend &>>$LOG_FILE_NAME
 VALIDATE $? "enabling backend"
 
-systemctl start backend &>>$LOG_FILE_NAME
+systemctl restart backend &>>$LOG_FILE_NAME
 VALIDATE $? "starting backend"
 
 
