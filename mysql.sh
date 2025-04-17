@@ -24,7 +24,7 @@
  }
 
  CHECK_ROOT(){
-    if [ USERIDS -ne 0 ]
+    if [ $USERIDS -ne 0 ]
     then
         echo "You need root access to use this script"
         exit 1
