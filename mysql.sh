@@ -44,5 +44,14 @@
  systemctl start mysqld &>>$LOG_FILE_NAME
  VALIDATE $? "Starting mysql-server"
 
- mysql_secure_installation --set-root-pass ExpenseApp@1
- VALIDATE $? "Setting root password"
+ 
+ mysql -h mysql.goksasaikiran.online -u root -pExpenseApp@1 -e 'show databases;'
+ if [ $? -ne 0 ]
+ then
+    echo "Mysql root password is not setup" 
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "Setting root password"
+    exit 1
+else
+    echo -e "$Y Root password is already set $N"
+fi
