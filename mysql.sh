@@ -45,12 +45,12 @@
  VALIDATE $? "Starting mysql-server"
 
  
- mysql -h mysql.gokasaikiran.online -u root -pExpenseApp@1 -e 'show databases;'
+ mysql -h mysql.gokasaikiran.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE_NAME
 
  if [ $? -ne 0 ]
  then
     echo "Mysql root password is not setup" 
-    mysql_secure_installation --set-root-pass ExpenseApp@1
+    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
     VALIDATE $? "Setting root password"
     exit 1
 else
