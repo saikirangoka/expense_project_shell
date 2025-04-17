@@ -45,7 +45,8 @@
  VALIDATE $? "Starting mysql-server"
 
  
- mysql -h mysql.goksasaikiran.online -u root -pExpenseApp@1 -e 'show databases;'
+ mysql -h mysql.gokasaikiran.online -u root -pExpenseApp@1 -e 'show databases;'
+
  if [ $? -ne 0 ]
  then
     echo "Mysql root password is not setup" 
