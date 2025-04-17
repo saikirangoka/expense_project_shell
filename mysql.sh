@@ -7,13 +7,6 @@
  Y="\e[33m"
  N="\e[0m"
 
-
- CHECK_ROOT(){
-    if [ USERIDS -ne 0 ]
-    then
-        echo "You need user access to use this script"
- }
-
  LOGS_FOLDER="/var/logs/expense-logs"
  mkdir -p "$LOGS_FOLDER"
  LOG_FILE=$(echo $0 | cut -d "." -f1 )
@@ -27,6 +20,15 @@
         exit 1
     else
         echo -e "$2 is $G Success $N"
+    fi
+ }
+
+ CHECK_ROOT(){
+    if [ USERIDS -ne 0 ]
+    then
+        echo "You need root access to use this script"
+        exit 1
+    fi
  }
 
  echo "Script satrted running at $TIMESTAMP" &>>$LOG_FILE_NAME
